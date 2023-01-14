@@ -11,18 +11,20 @@ void OperationCompleteWaiting(CancellationToken token)
     }
 }
 
-FileHandler fileHandler = new FileHandler();
+
 CancellationTokenSource tokenSource = new();
-
 Thread progressThread = new(() => OperationCompleteWaiting(tokenSource.Token));
-progressThread.Start();
+FileHandler fileHandler = new FileHandler();
 
+//task 1
 try
 {
+    progressThread.Start();
+
     fileHandler.GenerateFiles(100);
-    Console.WriteLine("\nCompleted successfully.");
+    Console.WriteLine("\nGenerated successfully.");
 }
-catch(Exception ex)
+catch (Exception ex)
 {
     Console.WriteLine("Error: " + ex.Message);
 }
@@ -30,6 +32,16 @@ finally
 {
     tokenSource.Cancel();
     progressThread.Join();
+    tokenSource.Dispose();
 }
 
-tokenSource.Dispose();
+//task 2
+try
+{
+    string result = fileHandler.MergeFilesInto("result");
+    Console.WriteLine("\nMerged successfully." + result);
+}
+catch (Exception ex)
+{
+    Console.WriteLine("Error: " + ex.Message);
+}

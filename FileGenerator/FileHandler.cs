@@ -1,9 +1,14 @@
-﻿namespace FileGenerator
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Xml.Linq;
+
+namespace FileGenerator
 {
     public class FileHandler
     {
         private static readonly string _folder = "Output";
-        private readonly string _dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), _folder);
+        private static readonly string _dir = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), _folder);
+        private readonly DirectoryInfo _directoryInfo = new DirectoryInfo(_dir);
 
         public FileHandler()
         {
@@ -29,6 +34,24 @@
 
                 streamWriter.Dispose();
             });
+        }
+
+        public string MergeFilesInto(string fileName, string removeSequence = " ")
+        {
+            IEnumerable<FileInfo> files = _directoryInfo.EnumerateFiles("file_*.*");
+            FileInfo destination = new FileInfo(Path.Combine(_dir, $"{fileName}_merged.txt"));
+
+            string removed = "";
+
+            foreach (FileInfo file in files)
+            {
+                List<string> lines = File.ReadAllLines(file.FullName).Where(arg => !string.IsNullOrWhiteSpace(arg)).ToList();
+                removed += string.Format("\n- {0} removed {1} lines", file.Name, lines.RemoveAll(x => x.Contains(removeSequence)));                
+
+                File.AppendAllLines(destination.FullName, lines);
+            }
+
+            return removed;
         }
     }
 }
