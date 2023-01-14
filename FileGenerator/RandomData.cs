@@ -51,9 +51,17 @@
             return _random.Next(minValue, maxValue).ToString();
         }
 
-        internal static string GetRandomDouble(int minValue = 1, int maxValue = 2000000000)
+        internal static string GetRandomDouble(int minValue = 1, int maxValue = 20)
         {
-            return _random.Next(minValue, maxValue).ToString().Insert(2, ",");
+            return (_random.Next(minValue, maxValue) + Math.Round(_random.NextDouble(), 8)).ToString();
+        }
+
+        internal static string GetFormattedRandomDataLine(int minValue = 1, int maxValue = 2000000000)
+        {
+            return string.Format(
+                "{0}||{1}||{2}||{3}||{4}||", 
+                GetRandomDate(), GetRandomEngSymbols(), GetRandomRusSymbols(), GetRandomInt(), GetRandomDouble()
+                );
         }
     }
 }
