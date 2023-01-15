@@ -45,3 +45,9 @@ catch (Exception ex)
 {
     Console.WriteLine("Error: " + ex.Message);
 }
+
+//task3
+fileHandler.ImportFileDataToDB(
+    "C:\\Users\\Asus\\Desktop\\Output\\file_97.txt",
+    "Data Source=.\\sqlexpress;Initial Catalog=FileDB;Integrated Security=True"
+    );
