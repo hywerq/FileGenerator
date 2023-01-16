@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32901.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileGenerator", "FileGenerator\FileGenerator.csproj", "{0C234893-5BBA-4F6D-8B31-E107F379447D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileOperationsTask1", "FileGenerator\FileOperationsTask1.csproj", "{0C234893-5BBA-4F6D-8B31-E107F379447D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTestApp", "ConsoleTestApp\ConsoleTestApp.csproj", "{1F577050-7EB5-4158-81C0-C715E7859020}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTestApp", "ConsoleTestApp\ConsoleTestApp.csproj", "{1F577050-7EB5-4158-81C0-C715E7859020}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
