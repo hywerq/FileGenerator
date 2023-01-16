@@ -15,3 +15,28 @@
 4. Реализовать хранимую процедуру в БД (или скрипт с внешним sql-запросом), который считает сумму всех целых чисел и медиану всех дробных чисел
 
 Все скрипты/процедуры/запросы из пунктов 2-3-4 должны быть повторяемыми.
+
+## 
+Для повторения необходимо выполнить следующий скрипт 
+
+```sql
+IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'FileDB')
+BEGIN
+  CREATE DATABASE FileDB;
+END;
+GO
+
+USE FileDB;
+
+DROP TABLE IF EXISTS file_data;
+
+CREATE TABLE file_data (
+	fd_id INT NOT NULL IDENTITY(1,1),
+	fd_date DATE NOT NULL,
+	fd_line_eng VARCHAR(10) NOT NULL,
+	fd_line_rus VARCHAR(10) NOT NULL,
+	fd_int_num INT NOT NULL,
+	fd_dec_num FLOAT NOT NULL,
+	CONSTRAINT PK_file_data PRIMARY KEY(fd_id)
+);
+```
