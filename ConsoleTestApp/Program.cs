@@ -40,7 +40,7 @@ Console.ReadKey();
 //task 2
 try
 {
-    fileHandler.MergeFilesInto("result");
+    fileHandler.MergeFilesInto("result", "a");
     Console.WriteLine("\nMerged successfully.");
 }
 catch (Exception ex)

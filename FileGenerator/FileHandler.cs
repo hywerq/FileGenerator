@@ -8,12 +8,14 @@
 
         public FileHandler()
         {
+            //create output directory if it doesn't exist
             if (!Directory.Exists(_dir))
             {
                 Directory.CreateDirectory(_dir);
             }
         }
 
+        //generates files according to template format
         public void GenerateFiles(int count)
         {
             List<StreamWriter> streamWriters = new List<StreamWriter>();
@@ -32,6 +34,7 @@
             });
         }
 
+        //merges all files from the output folder and removes rows with given string
         public void MergeFilesInto(string fileName, string removeSequence = " ")
         {
             IEnumerable<FileInfo> files = _directoryInfo.EnumerateFiles("file_*.*");
