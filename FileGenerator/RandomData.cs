@@ -53,7 +53,7 @@
 
         internal static string GetRandomDouble(int minValue = 1, int maxValue = 20)
         {
-            return (_random.Next(minValue, maxValue) + Math.Round(_random.NextDouble(), 8)).ToString();
+            return _random.Next(minValue, maxValue).ToString() + "," + _random.Next(0, 100000000).ToString();
         }
 
         internal static string GetFormattedRandomDataLine(int minValue = 1, int maxValue = 2000000000)

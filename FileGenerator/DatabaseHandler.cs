@@ -40,7 +40,7 @@ namespace FileOperationsTask1
                             command.Parameters["@dec"].Value = double.Parse(args[4]);
 
                             rowsAffected += await command.ExecuteNonQueryAsync();
-                            Console.WriteLine("Rows affected: {0}, rows left: {1}", rowsAffected, lines.Count - rowsAffected);
+                            Console.WriteLine("Rows added: {0}, rows left: {1}", rowsAffected, lines.Count - rowsAffected);
                         }
                     }
                 }
