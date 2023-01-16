@@ -1,8 +1,8 @@
-﻿using FileGenerator;
+﻿using FileOperationsTask1;
 
 void OperationCompleteWaiting(CancellationToken token)
 {
-    Console.Write("Loading");
+    Console.Write("Loading files");
 
     while (!token.IsCancellationRequested)
     { 
@@ -10,7 +10,6 @@ void OperationCompleteWaiting(CancellationToken token)
         Thread.Sleep(500);
     }
 }
-
 
 CancellationTokenSource tokenSource = new();
 Thread progressThread = new(() => OperationCompleteWaiting(tokenSource.Token));
@@ -35,19 +34,33 @@ finally
     tokenSource.Dispose();
 }
 
+Console.WriteLine("\nPress any key to start task2:");
+Console.ReadKey();
+
 //task 2
 try
 {
-    string result = fileHandler.MergeFilesInto("result");
-    Console.WriteLine("\nMerged successfully." + result);
+    fileHandler.MergeFilesInto("result");
+    Console.WriteLine("\nMerged successfully.");
 }
 catch (Exception ex)
 {
     Console.WriteLine("Error: " + ex.Message);
 }
 
+Console.WriteLine("\nPress any key to start task3:");
+Console.ReadKey();
+
 //task3
-fileHandler.ImportFileDataToDB(
+await DatabaseHandler.ImportFileDataToDBAsync(
     "C:\\Users\\Asus\\Desktop\\Output\\file_97.txt",
     "Data Source=.\\sqlexpress;Initial Catalog=FileDB;Integrated Security=True"
     );
+
+Console.WriteLine("\nPress any key to start task4:");
+Console.ReadKey();
+
+//task4
+var result = await DatabaseHandler.CcalculateSumAndMedian(
+    "Data Source=.\\sqlexpress;Initial Catalog=FileDB;Integrated Security=True");
+Console.WriteLine("Sum: {0}, median: {1}", result.Item1, result.Item2);

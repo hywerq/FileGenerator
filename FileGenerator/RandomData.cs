@@ -1,4 +1,4 @@
-﻿namespace FileGenerator
+﻿namespace FileOperationsTask1
 {
     internal static class RandomData
     {
